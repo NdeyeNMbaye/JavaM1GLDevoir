@@ -15,14 +15,12 @@ public class SectorService implements ISectorService {
 
     @Override
     public List<SectorDto> getAll() {
-        // La méthode list() n'attend plus d'argument.
         return SectorMapper.listSectorEntityToListSectorDto(sectorDao.list());
     }
 
     @Override
-    public SectorDto get(int id) {
-        SectorEntity entity = sectorDao.get(id);
-        return (entity != null) ? SectorMapper.toSectorDto(entity) : null;
+    public SectorEntity get(int id) { // La méthode retourne l'entité
+        return sectorDao.get(id);
     }
 
     @Override

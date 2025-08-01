@@ -6,11 +6,11 @@ import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
-@XmlRootElement(name = "classe") // Ajout du nom de l'élément racine
+@XmlRootElement(name = "classe")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class ClasseDto implements Serializable {
 
-    @XmlElement(name = "idClasse", required = true)
+    @XmlElement(name = "idClasse")
     private Integer id;
 
     @XmlElement(name = "className", required = true)
@@ -19,19 +19,14 @@ public class ClasseDto implements Serializable {
     @XmlElement(name = "description", required = true)
     private String description;
 
-    @XmlElement(name = "idSector", required = true) // C'est l'ajout crucial
+    @XmlElement(name = "idSector", required = true)
     private Integer idSector;
+
+    @XmlElement(name = "sectorName")
+    private String sectorName;
 
     public ClasseDto() {
         super();
-    }
-
-    public ClasseDto(Integer id, String className, String description, Integer idSector) {
-        super();
-        this.id = id;
-        this.className = className;
-        this.description = description;
-        this.idSector = idSector;
     }
 
     // Getters
@@ -51,6 +46,10 @@ public class ClasseDto implements Serializable {
         return idSector;
     }
 
+    public String getSectorName() {
+        return sectorName;
+    }
+
     // Setters
     public void setId(Integer id) {
         this.id = id;
@@ -66,5 +65,9 @@ public class ClasseDto implements Serializable {
 
     public void setIdSector(Integer idSector) {
         this.idSector = idSector;
+    }
+
+    public void setSectorName(String sectorName) {
+        this.sectorName = sectorName;
     }
 }

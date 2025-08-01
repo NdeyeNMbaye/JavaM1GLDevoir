@@ -3,6 +3,8 @@ package com.groupeisi.metier;
 import java.util.List;
 
 import com.groupeisi.dto.SectorDto;
+import com.groupeisi.entity.SectorEntity;
+import com.groupeisi.mapper.SectorMapper;
 import com.groupeisi.service.ISectorService;
 import com.groupeisi.service.SectorService;
 import jakarta.jws.WebMethod;
@@ -16,9 +18,10 @@ public class SectorWebServiceImpl implements SectorWebService {
 
     @Override
     @WebMethod(operationName = "getSector")
-    public SectorDto get(@WebParam(name = "idSector") Integer id) { // Changé de int à Integer
-        // Java gère la conversion de Integer vers int pour la méthode du service
-        return sectorService.get(id);
+    public SectorDto get(@WebParam(name = "idSector") Integer id) {
+        // La méthode get() du service retourne une entité. Nous devons la mapper en DTO.
+        SectorEntity sectorEntity = sectorService.get(id);
+        return SectorMapper.toSectorDto(sectorEntity);
     }
 
     @Override
@@ -41,8 +44,7 @@ public class SectorWebServiceImpl implements SectorWebService {
 
     @Override
     @WebMethod(operationName = "deleteSector")
-    public boolean delete(@WebParam(name = "idSector") Integer id) { // Changé de int à Integer
-        // Java gère la conversion de Integer vers int pour la méthode du service
+    public boolean delete(@WebParam(name = "idSector") Integer id) {
         return sectorService.delete(id);
     }
 }
