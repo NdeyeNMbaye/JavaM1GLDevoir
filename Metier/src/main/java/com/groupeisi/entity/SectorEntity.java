@@ -3,6 +3,7 @@ package com.groupeisi.entity;
 import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects; // N'oubliez pas d'importer Objects
 
 @Entity
 @Table(name = "sectors")
@@ -48,5 +49,19 @@ public class SectorEntity implements Serializable {
 
     public void setClasses(List<ClasseEntity> classes) {
         this.classes = classes;
+    }
+
+    // AJOUTER CES DEUX MÉTHODES
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SectorEntity that = (SectorEntity) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
